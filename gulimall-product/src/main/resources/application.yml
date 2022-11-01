@@ -4,6 +4,13 @@ spring:
     password: wzh545818*
     url: jdbc:mysql://192.168.163.129:3306/gulimall_pms?userUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    alicloud:
+      access-key: LTAI5tNwCBbxjh59nc7ufZJZ
+      secret-key: uyyd8HX9UdXivJ4T38tnpbQDi6ksQX
+      oss:
+        endpoint: oss-cn-hangzhou.aliyuncs.com
+
 
 
 mybatis-plus:
@@ -11,5 +18,8 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
-server:
-  port: 10000
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+logging:
+  level:
+    com.wzh.gulimall: debug  # com.wzh.gulimall包下的日志级别

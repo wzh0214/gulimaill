@@ -17,6 +17,8 @@
         <module>renren-fast</module>
         <module>renren-generator</module>
         <module>gulimall-common</module>
+        <module>gulimall-getway</module>
+        <module>gulimall-third-party</module>
     </modules>
     <!--统一管理jar包版本-->
     <properties>
@@ -72,12 +74,6 @@
                 <version>${druid.version}</version>
             </dependency>
 
-<!--            &lt;!&ndash;mybatis&ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.mybatis.spring.boot</groupId>-->
-<!--                <artifactId>mybatis-spring-boot-starter</artifactId>-->
-<!--                <version>${mybatis.spring.boot.version}</version>-->
-<!--            </dependency>-->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>

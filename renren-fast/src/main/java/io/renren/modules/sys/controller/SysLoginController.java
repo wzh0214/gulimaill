@@ -32,7 +32,6 @@ import java.util.Map;
  * @author Mark sunlightcs@gmail.com
  */
 @RestController
-@CrossOrigin(origins = "localhost:8080", allowCredentials = "true", allowedHeaders = "*")
 public class SysLoginController extends AbstractController {
 	@Autowired
 	private SysUserService sysUserService;
