@@ -3,6 +3,7 @@ package com.wzh.gulimall.product;
 import com.aliyun.oss.OSSClient;
 import com.wzh.gulimall.product.entity.BrandEntity;
 import com.wzh.gulimall.product.service.BrandService;
+import com.wzh.gulimall.product.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 /**
  * @author wzh
@@ -27,6 +29,9 @@ public class test {
 
     @Autowired
     OSSClient ossClient;
+
+    @Autowired
+    CategoryService categoryService;
     @Test
     public void contextLoads() {
         BrandEntity brandEntity = new BrandEntity();
@@ -47,6 +52,12 @@ public class test {
         // 关闭OSSClient。
         ossClient.shutdown();
         System.out.println("上传成功.");
+    }
+
+    @Test
+    public void testFindPath() {
+        Long[] catelogPath = categoryService.findCatelogPath(255L);
+        log.info("路径：" + Arrays.asList(catelogPath));
     }
 
 }

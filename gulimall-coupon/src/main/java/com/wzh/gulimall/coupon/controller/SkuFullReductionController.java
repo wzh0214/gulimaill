@@ -4,12 +4,9 @@ import java.util.Arrays;
 import java.util.Map;
 
 
+import com.wzh.common.to.SkuReductionTo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.wzh.gulimall.coupon.entity.SkuFullReductionEntity;
 import com.wzh.gulimall.coupon.service.SkuFullReductionService;
@@ -53,6 +50,17 @@ public class SkuFullReductionController {
 
         return R.ok().put("skuFullReduction", skuFullReduction);
     }
+
+    /**
+     * 保存
+     */
+    @PostMapping("/saveinfo")
+    public R saveinfo(@RequestBody SkuReductionTo skuReductionTo){
+        skuFullReductionService.saveSkuReduction(skuReductionTo);
+
+        return R.ok();
+    }
+
 
     /**
      * 保存

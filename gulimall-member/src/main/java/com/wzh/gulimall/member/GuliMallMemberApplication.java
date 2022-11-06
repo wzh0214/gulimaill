@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author wzh
  * @data 2022/10/25 -20:58
  */
-
+@EnableDiscoveryClient
 @SpringBootApplication
 public class GuliMallMemberApplication {
     public static void main(String[] args) {

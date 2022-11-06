@@ -10,6 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @data 2022/10/25 -20:42
  */
 
+@EnableDiscoveryClient
 @SpringBootApplication
 public class GuliMallCouponApplication {
     public static void main(String[] args) {

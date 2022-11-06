@@ -38,7 +38,7 @@ public class BrandEntity implements Serializable {
 	 * 品牌名
 	 */
 
-	@NotBlank(message = "品牌名必须提交", groups = {AddGroup.class})
+	@NotBlank(message = "品牌名必须提交", groups = {AddGroup.class, UpdateGroup.class})
 	private String name;
 	/**
 	 * 品牌logo地址
@@ -66,8 +66,8 @@ public class BrandEntity implements Serializable {
 	/**
 	 * 排序
 	 */
-	@NotNull
-	@Min(value = 0, message = "排序必须大于等于0")
+	@NotNull(groups = {AddGroup.class})
+	@Min(value = 0, message = "排序必须大于等于0",groups = {AddGroup.class,UpdateGroup.class})
 	private Integer sort;
 
 }
