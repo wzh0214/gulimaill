@@ -4,6 +4,8 @@ spring:
     password: wzh545818*
     url: jdbc:mysql://192.168.163.129:3306/gulimall_wms?userUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 
 
 mybatis-plus:

@@ -24,6 +24,13 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
 
+        - id: ware_route
+          uri: lb://gulimall-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
         - id: admin_route    #路由的ID，没有固定规则但要求唯一，建议配合服务名
           # uri: http://localhost:8001          #匹配后提供服务的路由地址
           uri: lb://renren-fast #匹配后提供服务的路由地址
