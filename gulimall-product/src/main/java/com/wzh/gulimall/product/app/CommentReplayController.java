@@ -1,10 +1,9 @@
-package com.wzh.gulimall.product.controller;
+package com.wzh.gulimall.product.app;
 
 import java.util.Arrays;
 import java.util.Map;
 
 
-import com.wzh.gulimall.product.vo.SpuSaveVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,34 +11,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wzh.gulimall.product.entity.SpuInfoEntity;
-import com.wzh.gulimall.product.service.SpuInfoService;
+import com.wzh.gulimall.product.entity.CommentReplayEntity;
+import com.wzh.gulimall.product.service.CommentReplayService;
 import com.wzh.common.utils.PageUtils;
 import com.wzh.common.utils.R;
 
 
 
 /**
- * spu信息
+ * 商品评价回复关系
  *
  * @author wzh
  * @email wzh@gmail.com
  * @date 2022-10-25 18:05:35
  */
 @RestController
-@RequestMapping("product/spuinfo")
-public class    SpuInfoController {
+@RequestMapping("product/commentreplay")
+public class CommentReplayController {
     @Autowired
-    private SpuInfoService spuInfoService;
+    private CommentReplayService commentReplayService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("product:spuinfo:list")
+    //@RequiresPermissions("product:commentreplay:list")
     public R list(@RequestParam Map<String, Object> params){
-        //PageUtils page = spuInfoService.queryPage(params);
-        PageUtils page = spuInfoService.queryPageByCondition(params);
+        PageUtils page = commentReplayService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -49,21 +47,20 @@ public class    SpuInfoController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-   // @RequiresPermissions("product:spuinfo:info")
+   // @RequiresPermissions("product:commentreplay:info")
     public R info(@PathVariable("id") Long id){
-		SpuInfoEntity spuInfo = spuInfoService.getById(id);
+		CommentReplayEntity commentReplay = commentReplayService.getById(id);
 
-        return R.ok().put("spuInfo", spuInfo);
+        return R.ok().put("commentReplay", commentReplay);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("product:spuinfo:save")
-    public R save(@RequestBody SpuSaveVo vo){
-		//spuInfoService.save(spuInfo);
-        spuInfoService.saveSpuInfo(vo);
+    //@RequiresPermissions("product:commentreplay:save")
+    public R save(@RequestBody CommentReplayEntity commentReplay){
+		commentReplayService.save(commentReplay);
 
         return R.ok();
     }
@@ -72,9 +69,9 @@ public class    SpuInfoController {
      * 修改
      */
     @RequestMapping("/update")
-   // @RequiresPermissions("product:spuinfo:update")
-    public R update(@RequestBody SpuInfoEntity spuInfo){
-		spuInfoService.updateById(spuInfo);
+   // @RequiresPermissions("product:commentreplay:update")
+    public R update(@RequestBody CommentReplayEntity commentReplay){
+		commentReplayService.updateById(commentReplay);
 
         return R.ok();
     }
@@ -83,9 +80,9 @@ public class    SpuInfoController {
      * 删除
      */
     @RequestMapping("/delete")
-   // @RequiresPermissions("product:spuinfo:delete")
+   // @RequiresPermissions("product:commentreplay:delete")
     public R delete(@RequestBody Long[] ids){
-		spuInfoService.removeByIds(Arrays.asList(ids));
+		commentReplayService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

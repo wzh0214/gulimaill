@@ -1,4 +1,4 @@
-package com.wzh.gulimall.product.controller;
+package com.wzh.gulimall.product.app;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +9,6 @@ import com.wzh.gulimall.product.entity.AttrEntity;
 import com.wzh.gulimall.product.service.AttrAttrgroupRelationService;
 import com.wzh.gulimall.product.service.AttrService;
 import com.wzh.gulimall.product.service.CategoryService;
-import com.wzh.gulimall.product.service.impl.CategoryServiceImpl;
 import com.wzh.gulimall.product.vo.AttrGroupRelationVo;
 import com.wzh.gulimall.product.vo.AttrGroupWithAttrsVo;
 import org.springframework.beans.factory.annotation.Autowired;

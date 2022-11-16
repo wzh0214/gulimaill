@@ -39,5 +39,15 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}  # 路径重写。逗号左边是原路径，右边是重写后的路径
 
+        - id: gulimall_host_route
+          uri: lb://gulimall-product
+          predicates:
+            - Host=gulimall.com
+
+        - id: gulimall_search_route
+          uri: lb://gulimall-search
+          predicates:
+            - Host=search.gulimall.com
+
 
 ## http://localhost:88/api/captcha.jpg -> http://renrenfast:8080/api/captcha.jpg 重写=> http://localhost:8080/renrenfast/captcha.jpg

@@ -7,8 +7,11 @@ import com.wzh.gulimall.product.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.FileInputStream;
@@ -32,6 +35,13 @@ public class test {
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    RedissonClient redisson;
+
     @Test
     public void contextLoads() {
         BrandEntity brandEntity = new BrandEntity();
@@ -58,6 +68,19 @@ public class test {
     public void testFindPath() {
         Long[] catelogPath = categoryService.findCatelogPath(255L);
         log.info("路径：" + Arrays.asList(catelogPath));
+    }
+
+
+    @Test
+    public void testStringRedisTemplate() {
+        ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
+        ops.set("k1", "v1");
+        System.out.println(ops.get("k1"));
+    }
+
+    @Test
+    public void testRedisson() {
+        System.out.println(redisson);
     }
 
 }
