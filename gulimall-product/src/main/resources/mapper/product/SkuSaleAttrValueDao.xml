@@ -12,6 +12,42 @@
         <result property="attrValue" column="attr_value"/>
         <result property="attrSort" column="attr_sort"/>
     </resultMap>
+<!--    <select id="getSaleAttrsBySpuId" resultType="com.wzh.gulimall.product.vo.SkuItemVo$SkuItemSaleAttrVo">-->
+<!--        SELECT saav.attr_id attr_id, saav.attr_name attr_name, GROUP_CONCAT(DISTINCT saav.attr_value) attr_values-->
+<!--        FROM pms_sku_info si-->
+<!--        LEFT JOIN pms_sku_sale_attr_value saav-->
+<!--        ON si.sku_id = saav.sku_id-->
+<!--        WHERE spu_id = #{spuId}-->
+<!--        GROUP BY saav.attr_id, saav.attr_name-->
+
+<!--    </select>-->
+
+    <resultMap id="skuItemSaleAttrVo" type="com.wzh.gulimall.product.vo.SkuItemVo$SkuItemSaleAttrVo">
+        <result column="attr_id" property="attrId"></result>
+        <result column="attr_name" property="attrName"></result>
+        <collection property="attrValues" ofType="com.wzh.gulimall.product.vo.SkuItemVo$AttrValueWithSkuIdVo">
+            <result column="attr_value" property="attrValue"></result>
+            <result column="sku_ids" property="skuIds"></result>
+        </collection>
+    </resultMap>
+
+    <select id="getSaleAttrsBySpuId" resultMap="skuItemSaleAttrVo">
+        SELECT
+            ssav.attr_id attr_id,
+            ssav.attr_name attr_name,
+            ssav.attr_value,
+            group_concat( DISTINCT info.sku_id ) sku_ids
+        FROM
+            pms_sku_info info
+                LEFT JOIN pms_sku_sale_attr_value ssav ON ssav.sku_id = info.sku_id
+        WHERE
+            info.spu_id = #{spuId}
+        GROUP BY
+            ssav.attr_id,
+            ssav.attr_name,
+            ssav.attr_value
+
+    </select>
 
 
 </mapper>

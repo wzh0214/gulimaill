@@ -11,16 +11,49 @@ import java.util.List;
  */
 @Data
 public class SearchParam {
-    private String keyword; // 页面传递过来的全文匹配关机字
-    private Long catalog3Id; // 三级分类id
+    /**
+     * 页面传递过来的全文匹配关键字
+     */
+    private String keyword;
 
-    private String sort; // 排序条件
+    /**
+     * 品牌id,可以多选
+     */
+    private List<Long> brandId;
 
-    // 过滤条件
-    private Integer hasStock = 1; // 是否显示有货，默认null查所有
-    private String skuPrice; // 价格区间查询
-    private List<Long> brandId; // 安装品牌查询，可以多选
-    private List<String> attrs; // 按照属性进行删选
-    private Integer pageNum; // 页码
+    /**
+     * 三级分类id
+     */
+    private Long catalog3Id;
+
+    /**
+     * 排序条件：sort=price/salecount/hotscore_desc/asc
+     */
+    private String sort;
+
+    /**
+     * 是否显示有货
+     */
+    private Integer hasStock;
+
+    /**
+     * 价格区间查询
+     */
+    private String skuPrice;
+
+    /**
+     * 按照属性进行筛选
+     */
+    private List<String> attrs;
+
+    /**
+     * 页码
+     */
+    private Integer pageNum = 1;
+
+    /**
+     * 原生的所有查询条件
+     */
+    private String _queryString;
 
 }

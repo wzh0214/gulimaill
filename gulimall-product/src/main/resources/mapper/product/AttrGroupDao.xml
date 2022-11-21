@@ -12,6 +12,25 @@
         <result property="icon" column="icon"/>
         <result property="catelogId" column="catelog_id"/>
     </resultMap>
+                                                                                <!--内部类用$符号-->
+    <resultMap id="spuItemAttrGroupVo" type="com.wzh.gulimall.product.vo.SkuItemVo$SpuItemAttrGroupVo">
+        <result property="groupName" column="attr_group_name"></result>
+        <collection property="attrs" ofType="com.wzh.gulimall.product.vo.SkuItemVo$SpuBaseAttrVo">
+            <result column="attr_name" property="attrName"></result>
+            <result column="attr_value" property="attrValue"></result>
+        </collection>
+    </resultMap>
+    <select id="getAttrGroupWithAttrsBySpuId"  resultMap="spuItemAttrGroupVo">
+        SELECT pav.spu_id, ag.attr_group_name, ag.attr_group_id, ar.attr_id, pav.attr_name, pav.attr_value
+        FROM pms_attr_group ag
+        LEFT JOIN pms_attr_attrgroup_relation ar
+               ON ag.attr_group_id = ar.attr_group_id
+        LEFT JOIN pms_product_attr_value pav
+              ON pav.attr_id = ar.attr_id
+        WHERE ag.catelog_id = #{catalogId}
+        AND pav.spu_id = #{spuId}
+
+    </select>
 
 
 </mapper>

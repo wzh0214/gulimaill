@@ -1,9 +1,12 @@
 package com.wzh.gulimall.product;
 
 import com.aliyun.oss.OSSClient;
+import com.wzh.gulimall.product.dao.AttrGroupDao;
+import com.wzh.gulimall.product.dao.SkuSaleAttrValueDao;
 import com.wzh.gulimall.product.entity.BrandEntity;
 import com.wzh.gulimall.product.service.BrandService;
 import com.wzh.gulimall.product.service.CategoryService;
+import com.wzh.gulimall.product.vo.SkuItemVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author wzh
@@ -41,6 +45,12 @@ public class test {
 
     @Autowired
     RedissonClient redisson;
+
+    @Autowired
+    AttrGroupDao attrGroupDao;
+
+    @Autowired
+    SkuSaleAttrValueDao skuSaleAttrValueDao;
 
     @Test
     public void contextLoads() {
@@ -81,6 +91,24 @@ public class test {
     @Test
     public void testRedisson() {
         System.out.println(redisson);
+    }
+
+    @Test
+    public void test() {
+        List<SkuItemVo.SpuItemAttrGroupVo> attrGroupWithAttrsBySpuId =
+                attrGroupDao.getAttrGroupWithAttrsBySpuId(1L, 225L);
+
+        System.out.println(attrGroupWithAttrsBySpuId);
+
+
+    }
+
+    @Test
+    public void test2() {
+        List<SkuItemVo.SkuItemSaleAttrVo> saleAttrsBySpuId = skuSaleAttrValueDao.getSaleAttrsBySpuId(1L);
+        System.out.println(saleAttrsBySpuId);
+
+
     }
 
 }

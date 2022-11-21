@@ -296,7 +296,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
             BeanUtils.copyProperties(sku, skuEsModel);
             // 不对应的数据手动设置
             skuEsModel.setSkuPrice(sku.getPrice());
-            skuEsModel.setBrandImg(sku.getSkuDefaultImg());
+            skuEsModel.setSkuImg(sku.getSkuDefaultImg());
             // hasStock,hotScore
             // 设置库存信息
             if (finalStockMap == null) {

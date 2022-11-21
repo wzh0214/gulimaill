@@ -6,5 +6,9 @@ spring:
       oss:
         endpoint: oss-cn-hangzhou.aliyuncs.com
         bucket: gulimall-178
+      sms:
+        host: https://dfsns.market.alicloudapi.com
+        appcode: 11db853e9ac945d7811fadb90fabbb2d
+        path: /data/send_sms
 
 

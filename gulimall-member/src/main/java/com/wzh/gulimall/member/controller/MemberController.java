@@ -4,13 +4,13 @@ import java.util.Arrays;
 import java.util.Map;
 
 
+import com.wzh.common.exception.BizCodeEnum;
+import com.wzh.gulimall.member.exception.PhoneExistException;
+import com.wzh.gulimall.member.exception.UsernameExistException;
 import com.wzh.gulimall.member.feign.CouponFeignService;
+import com.wzh.gulimall.member.vo.UserRegistVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.wzh.gulimall.member.entity.MemberEntity;
 import com.wzh.gulimall.member.service.MemberService;
@@ -66,6 +66,21 @@ public class MemberController {
 
         return R.ok();
     }
+
+
+    @PostMapping("/regist")
+    public R regist(@RequestBody UserRegistVo vo) {
+        try {
+            memberService.regist(vo);
+        } catch (UsernameExistException e) {
+            return R.error(BizCodeEnum.USER_EXIST_EXCEPTION.getCode(), BizCodeEnum.USER_EXIST_EXCEPTION.getMsg());
+        } catch (PhoneExistException e) {
+            return R.error(BizCodeEnum.PHONE_EXIST_EXCEPTION.getCode(), BizCodeEnum.PHONE_EXIST_EXCEPTION.getMsg());
+        }
+        return R.ok();
+    }
+
+
 
     /**
      * 修改
