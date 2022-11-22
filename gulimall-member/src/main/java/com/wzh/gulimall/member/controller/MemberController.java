@@ -8,6 +8,8 @@ import com.wzh.common.exception.BizCodeEnum;
 import com.wzh.gulimall.member.exception.PhoneExistException;
 import com.wzh.gulimall.member.exception.UsernameExistException;
 import com.wzh.gulimall.member.feign.CouponFeignService;
+import com.wzh.gulimall.member.vo.MemberLoginVo;
+import com.wzh.gulimall.member.vo.SocialUser;
 import com.wzh.gulimall.member.vo.UserRegistVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -81,7 +83,27 @@ public class MemberController {
     }
 
 
+    @PostMapping("/login")
+    public R login(@RequestBody MemberLoginVo vo) {
+        MemberEntity entity = memberService.login(vo);
+        if (entity != null) {
+            // TODO 1.登录成功处理
+            return R.ok().setData(entity);
+        } else {
+            return R.error(BizCodeEnum.LOGINACCT_PASSWORD_INVALID_EXCEPTION.getCode(), BizCodeEnum.LOGINACCT_PASSWORD_INVALID_EXCEPTION.getMsg());
+        }
+    }
 
+
+    @PostMapping("/oauth2/login")
+    public R oauthlogin(@RequestBody SocialUser SocialUser) throws Exception {
+        MemberEntity entity = memberService.login(SocialUser);
+        if (entity != null) {
+            return R.ok().setData(entity);
+        } else {
+            return R.error(BizCodeEnum.LOGINACCT_PASSWORD_INVALID_EXCEPTION.getCode(), BizCodeEnum.LOGINACCT_PASSWORD_INVALID_EXCEPTION.getMsg());
+        }
+    }
     /**
      * 修改
      */

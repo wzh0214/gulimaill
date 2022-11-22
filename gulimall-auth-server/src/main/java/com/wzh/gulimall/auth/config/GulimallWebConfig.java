@@ -33,7 +33,7 @@ public class GulimallWebConfig implements WebMvcConfigurer {
          *         用来代替上面两个跳转的空方法
          */
 
-        registry.addViewController("/login.html").setViewName("login");
+        //registry.addViewController("/login.html").setViewName("login");
         registry.addViewController("/reg.html").setViewName("reg");
     }
 }
