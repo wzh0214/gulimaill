@@ -2,8 +2,10 @@ package com.wzh.gulimall.member.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.wzh.common.utils.PageUtils;
+import com.wzh.gulimall.member.controller.MemberReceiveAddressController;
 import com.wzh.gulimall.member.entity.MemberReceiveAddressEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +18,7 @@ import java.util.Map;
 public interface MemberReceiveAddressService extends IService<MemberReceiveAddressEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    List<MemberReceiveAddressEntity> getAddress(Long memberId);
 }
 

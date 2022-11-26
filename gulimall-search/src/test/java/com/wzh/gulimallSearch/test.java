@@ -1,14 +1,12 @@
 package com.wzh.gulimallSearch;
 
 import com.alibaba.fastjson.JSON;
-import com.wzh.guliamll.search.GuliMallSearchApplication;
-import com.wzh.guliamll.search.config.GulimallElasticsearshConfig;
+import com.wzh.gulimall.search.GuliMallSearchApplication;
+import com.wzh.gulimall.search.config.GulimallElasticsearshConfig;
 import lombok.Data;
-import org.apache.lucene.util.QueryBuilder;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchScrollRequest;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -17,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.naming.directory.SearchResult;
 import java.io.IOException;
 
 /**

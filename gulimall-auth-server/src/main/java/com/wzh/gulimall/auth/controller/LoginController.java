@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
  */
 @Controller
 public class LoginController {
-      // GulimallWebConfigl类代替了
+
     @GetMapping("/login.html")
     public String loginPage(HttpSession session) {
         Object attribute = session.getAttribute(AuthServerConstant.LOGIN_USER);
@@ -52,7 +52,8 @@ public class LoginController {
 
 
     }
-//
+
+//// GulimallWebConfigl类代替了
 //    @GetMapping("/reg.html")
 //    public String regPage() {
 //        return "reg";
@@ -69,10 +70,10 @@ public class LoginController {
     @ResponseBody
     @GetMapping("/sms/sendCode")
     public R sendCode(@RequestParam("phone") String phone) {
-        // 1.接口防刷
+        // 1.TODO：接口防刷
 
         // 2.刷新页码也不能60秒内重复发送
-        String redisCode     = redisTemplate.opsForValue().get(AuthServerConstant.SMS_CODE_CACHE_PREFIX + phone);
+        String redisCode = redisTemplate.opsForValue().get(AuthServerConstant.SMS_CODE_CACHE_PREFIX + phone);
         if (!StringUtils.isEmpty(redisCode)) { // 如果redis存在当前手机号的验证码
             long l = Long.parseLong(redisCode.split("_")[1]);
             if (System.currentTimeMillis() - l < 60000) {
@@ -109,8 +110,10 @@ public class LoginController {
 
             //效验出错回到注册页面，因为这是post请求不能直接写return "redict:reg"; 因为回到注册页是get请求
             // 也不能写"redict:/reg.html"; 不然访问的不是域名而是192.168.193.123:20000...
+            // 重定向可以解决表单重复提交，因为这样用户刷新的是重定向的页面
             return "redirect:http://auth.gulimall.com/reg.html";
         }
+
 
 
         String code = vo.getCode();

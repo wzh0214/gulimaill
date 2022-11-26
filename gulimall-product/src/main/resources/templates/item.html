@@ -15,8 +15,8 @@
 		<!--品牌官方网站-->
 		<div class="min">
 			<ul class="header_ul_left">
-				<li class="glyphicon glyphicon-home"><a href="http://gulimall.com/" class="aa">谷粒商城首页</a></li>
-				<li class="glyphicon glyphicon-map-marker"><a href="/static/item/javascript:;">北京</a>
+				<li class="glyphicon glyphicon-home" ><a href="http://gulimall.com/" class="aa"> 谷粒商城首页</a></li>
+				<li class="glyphicon glyphicon-map-marker"><a href="/static/item/javascript:;"> 北京</a>
 					<ol id="beijing">
 						<li style="background: red;"><a href="/static/item/javascript:;" style="color: white;">北京</a>
 						</li>
@@ -59,14 +59,12 @@
 			</ul>
 			`
 			<ul class="header_ul_right">
-				<li style="border: 0;">
-					<a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/login.html"
-					   class="aa">你好，请登录</a>
-					<a th:if="${session.loginUser != null}">[[${session.loginUser.nickname}]]</a>
+				<li style="width: 150px">
+					<a th:if="${session.loginUser != null}">欢迎：[[${session.loginUser.nickname}]]</a>
+					<a href="http://auth.gulimall.com/login.html" th:if="${session.loginUser == null}">你好，请登录</a>
 				</li>
-				<li>
-					<a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/reg.html"
-					   style="color: red;">免费注册</a>
+				<li  th:if="${session.loginUser == null}">
+					<a href="http://auth.gulimall.com/reg.html" class="li_2">免费注册</a>
 				</li>
 				<li><a href="http://member.gulimall.com/memberOrder.html" class="aa">我的订单</a> |</li>
 				<li class="jingdong"><a href="/static/item/javascript:;">我的</a><span
@@ -648,8 +646,8 @@
 					</div>
 
 					<div class="box-btns-two">
-						<a href="../商品分类\index.html">
-							立即预约
+						<a href="#" class="addToCart" th:attr="skuId=${item.info.skuId}">
+							加入购物车
 						</a>
 					</div>
 
@@ -1284,7 +1282,7 @@
 	$(".addToCart").click(function () {
 		let skuId = $(this).attr("skuId");
 		let num = $("#productNum").val();
-		location.href = "http://cart.gulimall.com/addCartItem?skuId=" + skuId + "&num=" + num;
+		location.href = "http://cart.gulimall.com/addToCart?skuId=" + skuId + "&num=" + num;
 		return false;
 	});
 

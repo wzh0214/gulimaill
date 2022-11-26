@@ -1,6 +1,6 @@
 package com.wzh.gulimall.product.feign;
 
-import com.wzh.common.to.SkuHasStockVo;
+
 import com.wzh.common.utils.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;

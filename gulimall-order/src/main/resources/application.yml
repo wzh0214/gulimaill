@@ -4,6 +4,22 @@ spring:
     password: wzh545818*
     url: jdbc:mysql://192.168.163.129:3306/gulimall_oms?userUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
+  rabbitmq:
+    host: 192.168.163.129
+    port: 5672
+    virtual-host: /
+    publisher-confirm-type: correlated  #开启发送端确认
+    publisher-returns: true #开启发送端消息抵达队列确认
+    template:
+      mandatory: true #只要抵达队列，以异步发送优先回调returnconfirm
+    listener:
+      direct:
+        acknowledge-mode: manual #手动确认消息
+  thymeleaf:
+    cache: false
+  redis:
+    host: 192.168.163.129
+    port: 6379
 
 
 mybatis-plus:
@@ -11,5 +27,5 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
-server:
-  port: 9000
+
+

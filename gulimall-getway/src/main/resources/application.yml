@@ -54,5 +54,15 @@ spring:
           predicates:
             - Host=auth.gulimall.com
 
+        - id: gulimall_cart_route
+          uri: lb://gulimall-cart
+          predicates:
+            - Host=cart.gulimall.com
+
+        - id: gulimall_order_route
+          uri: lb://gulimall-order
+          predicates:
+            - Host=order.gulimall.com
+
 
 ## http://localhost:88/api/captcha.jpg -> http://renrenfast:8080/api/captcha.jpg 重写=> http://localhost:8080/renrenfast/captcha.jpg

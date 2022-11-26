@@ -2,7 +2,7 @@ package com.wzh.gulimall.product.service.impl;
 
 import com.alibaba.fastjson.TypeReference;
 import com.wzh.common.constant.ProductConstant;
-import com.wzh.common.to.SkuHasStockVo;
+import com.wzh.common.to.SkuHasStockTo;
 import com.wzh.common.to.SkuReductionTo;
 import com.wzh.common.to.SpuBoundTo;
 import com.wzh.common.to.es.SkuEsModel;
@@ -13,7 +13,6 @@ import com.wzh.gulimall.product.feign.SearchFeignService;
 import com.wzh.gulimall.product.feign.WareFeignService;
 import com.wzh.gulimall.product.service.*;
 import com.wzh.gulimall.product.vo.SpuSaveVo;
-import jdk.internal.util.xml.impl.Attrs;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +32,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 
 
@@ -280,8 +278,8 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         Map<Long, Boolean> stockMap = null;
         try {
             R skuHasStock = wareFeignService.getSkuHasStock(skuIds);
-            TypeReference<List<SkuHasStockVo>> typeReference =  new TypeReference<List<SkuHasStockVo>>(){};
-            stockMap = skuHasStock.getData(typeReference).stream().collect(Collectors.toMap(SkuHasStockVo::getSkuId, item -> item.getHasStock()));
+            TypeReference<List<SkuHasStockTo>> typeReference =  new TypeReference<List<SkuHasStockTo>>(){};
+            stockMap = skuHasStock.getData(typeReference).stream().collect(Collectors.toMap(SkuHasStockTo::getSkuId, item -> item.getHasStock()));
 
         }catch (Exception e) {
             log.error("库存服务异常：原因{}",e);
