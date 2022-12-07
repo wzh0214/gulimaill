@@ -13,13 +13,18 @@ spring:
     template:
       mandatory: true #只要抵达队列，以异步发送优先回调returnconfirm
     listener:
-      direct:
+      simple:
         acknowledge-mode: manual #手动确认消息
   thymeleaf:
     cache: false
   redis:
     host: 192.168.163.129
     port: 6379
+#  cloud:
+#    alibaba:
+#      seata:
+#        # 自定义事务组名称需要与seata-server中对应
+#        tx-service-group: fsp_tx_group
 
 
 mybatis-plus:

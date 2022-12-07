@@ -118,9 +118,12 @@ public class LoginController {
 
         String code = vo.getCode();
         String s = redisTemplate.opsForValue().get(AuthServerConstant.SMS_CODE_CACHE_PREFIX + vo.getPhone());
+
+
         // 验证码通过
         if (!StringUtils.isEmpty(s) && code.equals(s.split("_")[0])) {
             // 删除验证码，防止用户多次使用使用过的验证码
+            // TODO:存在问题又可以会有表单重复提交问题，应该用lua脚本
             redisTemplate.delete(AuthServerConstant.SMS_CODE_CACHE_PREFIX + vo.getPhone());
 
             // 调用远程注册服务

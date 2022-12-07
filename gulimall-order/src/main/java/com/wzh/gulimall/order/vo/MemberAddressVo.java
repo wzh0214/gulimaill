@@ -1,9 +1,12 @@
 package com.wzh.gulimall.order.vo;
 
+import lombok.Data;
+
 /**
  * @author wzh
  * @data 2022/11/26 -17:09
  */
+@Data
 public class MemberAddressVo {
     private Long id;
     /**

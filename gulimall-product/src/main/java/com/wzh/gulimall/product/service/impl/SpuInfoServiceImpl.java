@@ -87,6 +87,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
      * // TODO 高级部分完善
      * @param vo
      */
+    //使用分布式事务
     @Transactional
     @Override
     public void saveSpuInfo(SpuSaveVo vo) {
@@ -333,6 +334,13 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         }
 
 
+    }
+
+    @Override
+    public SpuInfoEntity getSpuInfoBySkuId(Long skuId) {
+        SpuInfoDao dao = this.baseMapper;
+        SpuInfoEntity spuInfoEntity = dao.selectBySkuId(skuId);
+        return spuInfoEntity;
     }
 
 }

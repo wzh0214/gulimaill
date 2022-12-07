@@ -4,6 +4,7 @@ import com.wzh.common.constant.AuthServerConstant;
 import com.wzh.common.vo.MemberRespVo;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,8 +19,18 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginUserInterceptor implements HandlerInterceptor {
    public static ThreadLocal<MemberRespVo> loginUser =  new ThreadLocal<>();
 
+
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        String uri = request.getRequestURI();
+        AntPathMatcher antPathMatcher = new AntPathMatcher();
+        boolean match = antPathMatcher.match("/order/order/status/**", uri);
+        if (match) {
+            return true;
+        }
+
         MemberRespVo attribute = (MemberRespVo) request.getSession().getAttribute(AuthServerConstant.LOGIN_USER);
         if (attribute != null) {
             loginUser.set(attribute);
@@ -31,5 +42,10 @@ public class LoginUserInterceptor implements HandlerInterceptor {
             return false;
         }
 
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        loginUser.remove();
     }
 }

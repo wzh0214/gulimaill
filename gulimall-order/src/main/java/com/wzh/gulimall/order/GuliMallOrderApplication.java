@@ -34,6 +34,18 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
  *      6、给分布式大事务的入口标注@GlobalTransactional
  *      7、每一个远程的小事务用@Trabsactional
  *
+ *
+ * 本地事务失效的问题：
+ *  同一个对象内事务方法互相调用默认失效，因为绕过了代理对象，事务使用代理对象来进行控制的
+ * 解决方案：使用代理对象来调用事务方法
+ *  1. 引入aop-starter
+ *  （1）开启动态代理 @EnableAspectJAutoProxy(exposeProxy=true) (CGLIB) exposeProxy=true 对外暴露代理对象
+ *  （2）AopContext.currentProxy(); 获取当前代理对象
+ *  2. 直接从 spring 上下文中获取代理对象 (自定义组件需要实现 BeanFactory 接口)
+ *   (1) ConfigurableApplicationContext run = SpringApplication.run(GulimallOrderApplication.class, args); 得到上下文
+ *   (2) AutowireCapableBeanFactory beanFactory = run.getAutowireCapableBeanFactory(); 得到 bean 工厂
+ *   (3) GuLiMallBeanFactory.setBean(beanFactory); 全局化 bean 工厂对象
+ *   (4) GuLiMallBeanFactory.getBean(OrderService.class);
  */
 @EnableRedisHttpSession
 @EnableDiscoveryClient

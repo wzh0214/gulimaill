@@ -105,4 +105,7 @@ public class MemberEntity implements Serializable {
 	 */
 	private Long expiresIn;
 
+
+
+
 }
